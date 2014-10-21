@@ -16,7 +16,7 @@ add_definitions(-DQT_NO_KEYWORDS)
 catkin_package(
 #   INCLUDE_DIRS include
    LIBRARIES jannlab_plugin
-#   DEPENDS Eigen
+   CATKIN_DEPENDS csapex_core_plugins csapex_ml
 )
 
 include_directories(include
