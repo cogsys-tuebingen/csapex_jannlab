@@ -41,7 +41,7 @@ typedef boost::shared_ptr<std::vector<FeaturesMessage> const > FeaturesMsgsConst
 typedef std::vector< std::vector<double> >                     DoubleBlock;
 
 inline void processRequest(FeaturesMsgsConst &msgs,
-                           SyncSocket::Ptr &socket,
+                           SyncClient::Ptr   &client,
                            boost::shared_ptr<DoubleBlock> &results)
 {
     BlockMsg<double>::Ptr block(new BlockMsg<double>);
@@ -57,10 +57,9 @@ inline void processRequest(FeaturesMsgsConst &msgs,
 
     block->assign(data, step);
 
-    SocketMsg::Ptr out = boost::dynamic_pointer_cast<SocketMsg>(block);
     SocketMsg::Ptr res;
 
-    if(socket->query(out, res)) {
+    if(client->query(block, res)) {
         ErrorMsg::Ptr          err = boost::dynamic_pointer_cast<ErrorMsg>(res);
         BlockMsg<double>::Ptr  dat = boost::dynamic_pointer_cast<BlockMsg<double> >(res);
 
@@ -91,22 +90,22 @@ void JANNRemoteConnection::process()
     FeaturesMsgsConst              in = input_->getMessage<GenericVectorMessage, FeaturesMessage>();
     boost::shared_ptr<DoubleBlock> out(new DoubleBlock);
 
-    if(!socket_) {
+    if(!client_) {
         tryMakeSocket();
     }
 
-    if(!socket_->isConnected()) {
-        if(!socket_->connect()) {
+    if(!client_->isConnected()) {
+        if(!client_->connect()) {
             throw std::runtime_error("Couldn't connect!");
         }
     }
 
-    if(!socket_) {
+    if(!client_) {
         setError(true, "no connection to remote classifier", EL_WARNING);
         return;
     }
 
-    processRequest(in, socket_, out);
+    processRequest(in, client_, out);
 
     output_->publish<GenericVectorMessage, std::vector<double> >(out);
 }
@@ -134,7 +133,7 @@ void JANNRemoteConnection::makeSocket()
     std::string str_port = readParameter<std::string>("server port");
     int         port = boost::lexical_cast<int>(str_port);
 
-    socket_.reset(new utils_jcppsocket::SyncSocket(str_name, port));
+    client_.reset(new utils_jcppsocket::SyncClient(str_name, port));
 
     setError(false);
 }

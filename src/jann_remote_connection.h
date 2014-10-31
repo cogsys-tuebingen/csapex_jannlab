@@ -3,7 +3,7 @@
 
 /// PROJECT
 #include <csapex/model/node.h>
-#include <utils_jcppsocket/cpp/socket.h>
+#include <utils_jcppsocket/cpp/sync_client.h>
 
 namespace jannlab {
 class JANNRemoteConnection : public csapex::Node
@@ -23,7 +23,7 @@ private:
     csapex::Input                    *input_;
     csapex::Output                   *output_;
 
-    utils_jcppsocket::SyncSocket::Ptr socket_;
+    utils_jcppsocket::SyncClient::Ptr client_;
 };
 }
 
