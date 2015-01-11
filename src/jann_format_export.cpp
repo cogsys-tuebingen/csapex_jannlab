@@ -51,7 +51,7 @@ void JANNFormatExport::setup()
 void JANNFormatExport::process()
 {
     if(in_->hasMessage()) {
-        FeaturesMessage::Ptr msg = in_->getMessage<FeaturesMessage>();
+        FeaturesMessage::ConstPtr msg = in_->getMessage<FeaturesMessage>();
         m_.lock();
         msgs_.push_back(*msg);
         m_.unlock();
