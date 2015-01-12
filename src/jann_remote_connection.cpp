@@ -63,13 +63,13 @@ inline void processRequest(FeaturesMsgsConst &msgs,
         ErrorMsg::Ptr          err = boost::dynamic_pointer_cast<ErrorMsg>(res);
         BlockMsg<double>::Ptr  dat = boost::dynamic_pointer_cast<BlockMsg<double> >(res);
 
-        if(err.get() != NULL) {
+        if(err.get() != nullptr) {
             std::stringstream ss;
             ss << "Got error [ " << err->get() << " ]";
             throw std::runtime_error(ss.str());
         }
 
-        if(dat.get() != NULL) {
+        if(dat.get() != nullptr) {
             results->resize(rows);
             for(unsigned int i = 0 ; i < dat->rows() ; ++i) {
                 results->at(i).resize(dat->cols());
