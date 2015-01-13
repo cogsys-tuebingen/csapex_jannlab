@@ -37,12 +37,12 @@ void JANNRemoteConnection::setupParameters()
 
 namespace {
 
-typedef boost::shared_ptr<std::vector<FeaturesMessage> const > FeaturesMsgsConst;
+typedef std::shared_ptr<std::vector<FeaturesMessage> const > FeaturesMsgsConst;
 typedef std::vector< std::vector<double> >                     DoubleBlock;
 
 inline void processRequest(FeaturesMsgsConst &msgs,
                            SyncClient::Ptr   &client,
-                           boost::shared_ptr<DoubleBlock> &results)
+                           std::shared_ptr<DoubleBlock> &results)
 {
     BlockMsg<double>::Ptr block(new BlockMsg<double>);
     unsigned int step = msgs->front().value.size();
@@ -88,7 +88,7 @@ inline void processRequest(FeaturesMsgsConst &msgs,
 void JANNRemoteConnection::process()
 {
     FeaturesMsgsConst              in = input_->getMessage<GenericVectorMessage, FeaturesMessage>();
-    boost::shared_ptr<DoubleBlock> out(new DoubleBlock);
+    std::shared_ptr<DoubleBlock> out(new DoubleBlock);
 
     if(!client_) {
         tryMakeSocket();

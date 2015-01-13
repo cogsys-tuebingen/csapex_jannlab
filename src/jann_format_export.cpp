@@ -58,7 +58,7 @@ void JANNFormatExport::process()
     }
 
     if(in_vector_->hasMessage()) {
-        boost::shared_ptr<std::vector<FeaturesMessage> const> msgs =
+        std::shared_ptr<std::vector<FeaturesMessage> const> msgs =
                    in_vector_->getMessage<GenericVectorMessage, FeaturesMessage>();
         m_.lock();
         for(std::vector<FeaturesMessage>::const_iterator
