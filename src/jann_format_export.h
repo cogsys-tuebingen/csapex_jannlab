@@ -8,7 +8,7 @@
 #include <csapex_ml/features_message.h>
 
 /// SYSTEM
-#include <boost/thread/mutex.hpp>
+#include <mutex>
 
 namespace jannlab {
 class JANNFormatExport : public csapex::Node
@@ -30,7 +30,7 @@ private:
     csapex::Input*                                          in_;
     csapex::Input*                                          in_vector_;
 
-    boost::mutex                                            m_;
+    std::mutex                                            m_;
     std::vector<csapex::connection_types::FeaturesMessage>  msgs_;
 
 };
