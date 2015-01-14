@@ -35,11 +35,11 @@ void JANNFormatExport::setupParameters()
 
     addParameter(param::ParameterFactory::declareTrigger("save",
                                                          param::ParameterDescription("Save the obtained data!")),
-                 boost::bind(&JANNFormatExport::save, this));
+                 std::bind(&JANNFormatExport::save, this));
 
     addParameter(param::ParameterFactory::declareTrigger("clear",
                                                          param::ParameterDescription("Clear buffered data!")),
-                 boost::bind(&JANNFormatExport::clear, this));
+                 std::bind(&JANNFormatExport::clear, this));
 }
 
 void JANNFormatExport::setup()

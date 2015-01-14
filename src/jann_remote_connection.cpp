@@ -32,7 +32,7 @@ void JANNRemoteConnection::setupParameters()
 {
     addParameter(param::ParameterFactory::declareText("server name", "localhost"));
     addParameter(param::ParameterFactory::declareText("server port", "6666"));
-    addParameter(param::ParameterFactory::declareTrigger("connect"), boost::bind(&JANNRemoteConnection::makeSocket, this));
+    addParameter(param::ParameterFactory::declareTrigger("connect"), std::bind(&JANNRemoteConnection::makeSocket, this));
 }
 
 namespace {
