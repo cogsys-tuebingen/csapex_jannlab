@@ -60,8 +60,8 @@ inline void processRequest(FeaturesMsgsConst &msgs,
     SocketMsg::Ptr res;
 
     if(client->query(block, res)) {
-        ErrorMsg::Ptr          err = boost::dynamic_pointer_cast<ErrorMsg>(res);
-        BlockMsg<double>::Ptr  dat = boost::dynamic_pointer_cast<BlockMsg<double> >(res);
+        ErrorMsg::Ptr          err = std::dynamic_pointer_cast<ErrorMsg>(res);
+        BlockMsg<double>::Ptr  dat = std::dynamic_pointer_cast<BlockMsg<double> >(res);
 
         if(err.get() != nullptr) {
             std::stringstream ss;
