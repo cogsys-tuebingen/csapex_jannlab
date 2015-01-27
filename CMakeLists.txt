@@ -14,8 +14,6 @@ find_package(catkin REQUIRED COMPONENTS
 add_definitions(-DQT_NO_KEYWORDS)
 
 catkin_package(
-#   INCLUDE_DIRS include
-   LIBRARIES jannlab_plugin
    CATKIN_DEPENDS csapex_core_plugins csapex_ml
 )
 
