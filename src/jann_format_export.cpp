@@ -2,8 +2,7 @@
 #include "jann_format_export.h"
 
 /// PROJECT
-#include <csapex/msg/input.h>
-#include <csapex/msg/output.h>
+#include <csapex/msg/io.h>
 #include <csapex/model/connection_type.h>
 #include <csapex/msg/message.h>
 #include <utils_param/parameter_factory.h>
@@ -50,16 +49,16 @@ void JANNFormatExport::setup()
 
 void JANNFormatExport::process()
 {
-    if(in_->hasMessage()) {
-        FeaturesMessage::ConstPtr msg = in_->getMessage<FeaturesMessage>();
+    if(msg::hasMessage(in_)) {
+        FeaturesMessage::ConstPtr msg = msg::getMessage<FeaturesMessage>(in_);
         m_.lock();
         msgs_.push_back(*msg);
         m_.unlock();
     }
 
-    if(in_vector_->hasMessage()) {
+    if(msg::hasMessage(in_vector_)) {
         std::shared_ptr<std::vector<FeaturesMessage> const> msgs =
-                   in_vector_->getMessage<GenericVectorMessage, FeaturesMessage>();
+                   msg::getMessage<GenericVectorMessage, FeaturesMessage>(in_vector_);
         m_.lock();
         for(std::vector<FeaturesMessage>::const_iterator
             it = msgs->begin() ;

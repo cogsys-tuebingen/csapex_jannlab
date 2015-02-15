@@ -4,8 +4,7 @@
 /// PROJECT
 #include <csapex_core_plugins/vector_message.h>
 #include <csapex_ml/features_message.h>
-#include <csapex/msg/input.h>
-#include <csapex/msg/output.h>
+#include <csapex/msg/io.h>
 #include <utils_param/parameter_factory.h>
 #include <csapex/model/node_modifier.h>
 #include <boost/lexical_cast.hpp>
@@ -87,7 +86,7 @@ inline void processRequest(FeaturesMsgsConst &msgs,
 
 void JANNRemoteConnection::process()
 {
-    FeaturesMsgsConst              in = input_->getMessage<GenericVectorMessage, FeaturesMessage>();
+    FeaturesMsgsConst              in = msg::getMessage<GenericVectorMessage, FeaturesMessage>(input_);
     std::shared_ptr<DoubleBlock> out(new DoubleBlock);
 
     if(!client_) {
@@ -101,13 +100,13 @@ void JANNRemoteConnection::process()
     }
 
     if(!client_) {
-        setError(true, "no connection to remote classifier", EL_WARNING);
+        modifier_->setWarning("no connection to remote classifier");
         return;
     }
 
     processRequest(in, client_, out);
 
-    output_->publish<GenericVectorMessage, std::vector<double> >(out);
+    msg::publish<GenericVectorMessage, std::vector<double> >(output_, out);
 }
 
 
@@ -135,5 +134,5 @@ void JANNRemoteConnection::makeSocket()
 
     client_.reset(new utils_jcppsocket::SyncClient(str_name, port));
 
-    setError(false);
+    modifier_->setNoError();
 }
