@@ -27,11 +27,11 @@ JANNRemoteConnection::JANNRemoteConnection()
 {
 }
 
-void JANNRemoteConnection::setupParameters()
+void JANNRemoteConnection::setupParameters(Parameterizable& parameters)
 {
-    addParameter(param::ParameterFactory::declareText("server name", "localhost"));
-    addParameter(param::ParameterFactory::declareText("server port", "6666"));
-    addParameter(param::ParameterFactory::declareTrigger("connect"), std::bind(&JANNRemoteConnection::makeSocket, this));
+    parameters.addParameter(param::ParameterFactory::declareText("server name", "localhost"));
+    parameters.addParameter(param::ParameterFactory::declareText("server port", "6666"));
+    parameters.addParameter(param::ParameterFactory::declareTrigger("connect"), std::bind(&JANNRemoteConnection::makeSocket, this));
 }
 
 namespace {
@@ -110,10 +110,10 @@ void JANNRemoteConnection::process()
 }
 
 
-void JANNRemoteConnection::setup()
+void JANNRemoteConnection::setup(NodeModifier& node_modifier)
 {
-    input_  = modifier_->addInput<GenericVectorMessage,  FeaturesMessage>("Features");
-    output_ = modifier_->addOutput<GenericVectorMessage, std::vector<double> >("Results");
+    input_  = node_modifier.addInput<GenericVectorMessage,  FeaturesMessage>("Features");
+    output_ = node_modifier.addOutput<GenericVectorMessage, std::vector<double> >("Results");
 }
 
 void JANNRemoteConnection::tryMakeSocket()

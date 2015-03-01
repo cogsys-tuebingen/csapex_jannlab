@@ -11,9 +11,9 @@ class JANNRemoteConnection : public csapex::Node
 public:
     JANNRemoteConnection();
 
-    virtual void setupParameters();
-    virtual void process();
-    virtual void setup();
+    virtual void setupParameters(Parameterizable& parameters);
+    virtual void process() override;
+    virtual void setup(csapex::NodeModifier& node_modifier) override;
 
 private:
     void tryMakeSocket();

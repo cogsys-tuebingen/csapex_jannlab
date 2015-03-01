@@ -26,7 +26,7 @@ JANNFormatExport::JANNFormatExport()
 {
 }
 
-void JANNFormatExport::setupParameters()
+void JANNFormatExport::setupParameters(Parameterizable& parameters)
 {
     addParameter(param::ParameterFactory::declareFileOutputPath("path",
                                                                 param::ParameterDescription("Directory to write messages to"),
@@ -41,10 +41,10 @@ void JANNFormatExport::setupParameters()
                  std::bind(&JANNFormatExport::clear, this));
 }
 
-void JANNFormatExport::setup()
+void JANNFormatExport::setup(NodeModifier& node_modifier)
 {
-    in_        = modifier_->addOptionalInput<FeaturesMessage>("Feature");
-    in_vector_ = modifier_->addOptionalInput<GenericVectorMessage, FeaturesMessage>("Features");
+    in_        = node_modifier.addOptionalInput<FeaturesMessage>("Feature");
+    in_vector_ = node_modifier.addOptionalInput<GenericVectorMessage, FeaturesMessage>("Features");
 }
 
 void JANNFormatExport::process()
