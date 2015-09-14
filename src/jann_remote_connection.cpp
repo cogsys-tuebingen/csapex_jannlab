@@ -5,7 +5,7 @@
 #include <csapex_core_plugins/vector_message.h>
 #include <csapex_ml/features_message.h>
 #include <csapex/msg/io.h>
-#include <utils_param/parameter_factory.h>
+#include <csapex/param/parameter_factory.h>
 #include <csapex/model/node_modifier.h>
 #include <boost/lexical_cast.hpp>
 #include <utils_jcppsocket/cpp/socket_msgs.h>
