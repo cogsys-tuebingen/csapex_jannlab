@@ -29,9 +29,9 @@ JANNRemoteConnection::JANNRemoteConnection()
 
 void JANNRemoteConnection::setupParameters(Parameterizable& parameters)
 {
-    parameters.addParameter(param::ParameterFactory::declareText("server name", "localhost"));
-    parameters.addParameter(param::ParameterFactory::declareText("server port", "6666"));
-    parameters.addParameter(param::ParameterFactory::declareTrigger("connect"), std::bind(&JANNRemoteConnection::makeSocket, this));
+    parameters.addParameter(csapex::param::ParameterFactory::declareText("server name", "localhost"));
+    parameters.addParameter(csapex::param::ParameterFactory::declareText("server port", "6666"));
+    parameters.addParameter(csapex::param::ParameterFactory::declareTrigger("connect"), std::bind(&JANNRemoteConnection::makeSocket, this));
 }
 
 namespace {

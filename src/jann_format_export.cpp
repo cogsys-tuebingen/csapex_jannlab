@@ -26,16 +26,16 @@ JANNFormatExport::JANNFormatExport()
 
 void JANNFormatExport::setupParameters(Parameterizable& parameters)
 {
-    addParameter(param::ParameterFactory::declareFileOutputPath("path",
-                                                                param::ParameterDescription("Directory to write messages to"),
+    addParameter(csapex::param::ParameterFactory::declareFileOutputPath("path",
+                                                                csapex::param::ParameterDescription("Directory to write messages to"),
                                                                 "", ".nn"));
 
-    addParameter(param::ParameterFactory::declareTrigger("save",
-                                                         param::ParameterDescription("Save the obtained data!")),
+    addParameter(csapex::param::ParameterFactory::declareTrigger("save",
+                                                         csapex::param::ParameterDescription("Save the obtained data!")),
                  std::bind(&JANNFormatExport::save, this));
 
-    addParameter(param::ParameterFactory::declareTrigger("clear",
-                                                         param::ParameterDescription("Clear buffered data!")),
+    addParameter(csapex::param::ParameterFactory::declareTrigger("clear",
+                                                         csapex::param::ParameterDescription("Clear buffered data!")),
                  std::bind(&JANNFormatExport::clear, this));
 }
 
