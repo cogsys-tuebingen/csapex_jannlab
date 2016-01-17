@@ -100,7 +100,7 @@ void JANNRemoteConnection::process()
     }
 
     if(!client_) {
-        modifier_->setWarning("no connection to remote classifier");
+        node_modifier_->setWarning("no connection to remote classifier");
         return;
     }
 
@@ -134,5 +134,5 @@ void JANNRemoteConnection::makeSocket()
 
     client_.reset(new utils_jcppsocket::SyncClient(str_name, port));
 
-    modifier_->setNoError();
+    node_modifier_->setNoError();
 }
