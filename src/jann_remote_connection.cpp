@@ -104,7 +104,8 @@ void JANNRemoteConnection::process()
         return;
     }
 
-    processRequest(in, client_, out);
+    if (!in->empty())
+        processRequest(in, client_, out);
 
     msg::publish<GenericVectorMessage, std::vector<double> >(output_, out);
 }
