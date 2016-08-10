@@ -7,7 +7,7 @@ project(jannlab)
 find_package(catkin REQUIRED COMPONENTS
   csapex_core_plugins
   csapex_ml
-  utils_jcppsocket
+  cslibs_jcppsocket
   vision_plugins
 )
 

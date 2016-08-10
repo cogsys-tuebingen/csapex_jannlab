@@ -8,7 +8,7 @@
 #include <csapex/param/parameter_factory.h>
 #include <csapex/model/node_modifier.h>
 #include <boost/lexical_cast.hpp>
-#include <utils_jcppsocket/cpp/socket_msgs.h>
+#include <cslibs_jcppsocket/cpp/socket_msgs.h>
 
 /// SYSTEM
 #include <csapex/utility/register_apex_plugin.h>
@@ -20,7 +20,7 @@ using namespace jannlab;
 using namespace csapex;
 using namespace csapex::connection_types;
 
-using namespace utils_jcppsocket;
+using namespace cslibs_jcppsocket;
 using namespace serialization;
 
 JANNRemoteConnection::JANNRemoteConnection()
@@ -133,7 +133,7 @@ void JANNRemoteConnection::makeSocket()
     std::string str_port = readParameter<std::string>("server port");
     int         port = boost::lexical_cast<int>(str_port);
 
-    client_.reset(new utils_jcppsocket::SyncClient(str_name, port));
+    client_.reset(new cslibs_jcppsocket::SyncClient(str_name, port));
 
     node_modifier_->setNoError();
 }
