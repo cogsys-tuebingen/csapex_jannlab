@@ -1,13 +1,14 @@
 <?xml version="1.0"?>
 <package>
-  <name>jannlab</name>
+  <name>csapex_jannlab</name>
   <version>0.0.1</version>
   <description>
     The jannlab package contains plugins for the csapex which can be used
     to dump out data in JANN format and to communicate with a JANNLab Framework
     server.
   </description>
-
+  
+  <author>Richard Hanten</author>
   <maintainer email="richard.hanten@uni-tuebingen.de">Richard Hanten</maintainer>
 
   <license>BSD</license>
