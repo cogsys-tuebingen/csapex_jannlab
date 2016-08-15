@@ -8,7 +8,6 @@ find_package(catkin REQUIRED COMPONENTS
   csapex_core_plugins
   csapex_ml
   cslibs_jcppsocket
-  vision_plugins
 )
 
 add_definitions(-DQT_NO_KEYWORDS)
