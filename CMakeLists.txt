@@ -5,6 +5,7 @@ project(csapex_jannlab)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
+  csapex
   csapex_core_plugins
   csapex_ml
   cslibs_jcppsocket
