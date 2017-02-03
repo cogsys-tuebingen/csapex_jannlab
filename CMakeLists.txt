@@ -30,6 +30,7 @@ include_directories(
 )
 
 add_library(jannlab_plugin
+    src/jann_time_series_export.cpp
     src/jann_format_export.cpp
     src/jann_remote_connection.cpp
 )

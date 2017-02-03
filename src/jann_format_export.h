@@ -9,6 +9,7 @@
 
 /// SYSTEM
 #include <mutex>
+#include <fstream>
 
 namespace jannlab {
 class JANNFormatExport : public csapex::Node

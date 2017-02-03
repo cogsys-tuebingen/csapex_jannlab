@@ -1,4 +1,7 @@
 <library path="libjannlab_plugin">
+<class type="jannlab::JANNTimeSeriesExport" base_class_type="csapex::Node">
+  <description>Exports a time series of features into the jannlab format.</description>
+</class>
 <class type="jannlab::JANNFormatExport" base_class_type="csapex::Node">
   <description>Exports messages as JANN format if possible.</description>
   <tags>JANNLab, Output</tags>
